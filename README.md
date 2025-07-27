@@ -96,3 +96,46 @@ test-vault/           # Sample Obsidian notes for testing
 ## Testing
 
 The project includes a test vault with sample Obsidian notes demonstrating various link types and structures.
+
+## Limitations & Known Issues
+
+### Frontmatter Template Compatibility
+
+The tool currently outputs a **basic frontmatter format**:
+```yaml
+---
+title: string
+description: string  
+pubDate: date
+---
+```
+
+**Different Astro templates may require different schemas:**
+
+- **Blog templates**: May need `author`, `tags`, `heroImage`, `featured`
+- **Documentation**: May need `sidebar.order`, `editUrl`, `draft`
+- **Portfolio**: May need `excerpt`, `seo.title`, `isFeatured`
+
+### Current Workarounds:
+
+1. **Check your target Astro template's `content.config.ts`** to see required fields
+2. **Run the converter** with basic conversion
+3. **Post-process** the output files to match your schema
+
+### Planned Features (v1.0+):
+
+- 🔄 **Template profiles**: `--template astro-blog`, `--template astro-docs`
+- ⚙️ **Configuration file**: `.obsidian-to-astro.json` for custom schemas
+- 🔍 **Schema auto-detection**: Analyze existing content structure
+- 📝 **Custom field mapping**: Map Obsidian properties to Astro fields
+
+### Other Limitations:
+
+- ❌ Block references (`[[note^block]]`) not yet supported
+- ❌ Image embeds use standard markdown syntax only
+- ❌ No batch processing of multiple vaults
+- ❌ No backup functionality (always run with `--dry-run` first!)
+
+## Contributing
+
+See limitations above for areas where contributions would be most valuable!
